@@ -1,0 +1,64 @@
+[
+    {
+        "peso": 70.5,
+        "altura": 2.05,
+        "imc": 16.8,
+        "situacao": "Magreza"
+    },
+    {
+        "peso": 0,
+        "altura": 0
+    },
+    {
+        "peso": 75.12,
+        "altura": 1.81,
+        "imc": 22.9,
+        "situacao": "Normal"
+    },
+    {
+        "peso": 0,
+        "altura": 1.80
+    },
+    {
+        "peso": 130.0,
+        "altura": 1.90,
+        "imc": 36,
+        "situacao": "Obesidade"
+    },
+    {
+        "peso": 0,
+        "altura": -1.75
+    },
+    {
+        "peso": 150.0,
+        "altura": 1.60,
+        "imc": 58.6,
+        "situacao": "Obesidade Grave"
+    },
+    {
+        "peso": -90.4,
+        "altura": -1.67
+    },
+    {
+        "peso": 70.98,
+        "altura": 1.54,
+        "imc": 29.9,
+        "situacao": "Sobrepeso"
+    },
+    {
+        "peso": -90.5,
+        "altura": 1.80
+    },
+    {
+        "peso": -90.6,
+        "altura": 0
+    },
+    {
+        "peso": 90,
+        "altura": 0
+    },
+    {
+        "peso": 81.2,
+        "altura": -1.72
+    }
+]

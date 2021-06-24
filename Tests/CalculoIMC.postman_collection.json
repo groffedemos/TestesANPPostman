@@ -1,0 +1,136 @@
+{
+	"info": {
+		"_postman_id": "c30657e8-8c5a-4f40-a10e-93b4f9877f7a",
+		"name": "CalculoIMC",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Requisicao Calculo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/CalculoIMC/imc?peso={{peso}}&altura={{altura}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"CalculoIMC",
+						"imc"
+					],
+					"query": [
+						{
+							"key": "peso",
+							"value": "{{peso}}"
+						},
+						{
+							"key": "altura",
+							"value": "{{altura}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"if (pm.iterationData.get(\"peso\") != undefined)",
+					"    pm.collectionVariables.set(\"peso\", pm.iterationData.get(\"peso\"));",
+					"else",
+					"    pm.collectionVariables.set(\"peso\", -9999999);",
+					"",
+					"if (pm.iterationData.get(\"altura\") != undefined)",
+					"    pm.collectionVariables.set(\"altura\", pm.iterationData.get(\"altura\"));",
+					"else",
+					"    pm.collectionVariables.set(\"altura\", -9999999);",
+					"",
+					"if (pm.iterationData.get(\"imc\") != undefined)",
+					"    pm.collectionVariables.set(\"imc\", pm.iterationData.get(\"imc\"));",
+					"else",
+					"    pm.collectionVariables.set(\"imc\", -9999999);",
+					"",
+					"if (pm.iterationData.get(\"situacao\") != undefined)",
+					"    pm.collectionVariables.set(\"situacao\", pm.iterationData.get(\"situacao\"));",
+					"else",
+					"    pm.collectionVariables.set(\"situacao\", \"Indefinida\");"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"var peso = JSON.parse(pm.collectionVariables.get(\"peso\"));",
+					"var altura = JSON.parse(pm.collectionVariables.get(\"altura\"));",
+					"var imc = JSON.parse(pm.collectionVariables.get(\"imc\"));",
+					"",
+					"if (peso > 0 && altura > 0) {",
+					"    ",
+					"    pm.test(\"Retorno OK\", function() {",
+					"        pm.response.to.be.ok;",
+					"        pm.response.to.json;",
+					"        pm.response.to.be.withBody;",
+					"    });",
+					"",
+					"    var result = pm.response.json();",
+					"",
+					"    pm.test(\"Checar Peso\", function() {",
+					"        pm.expect(result.peso).to.eql(peso);",
+					"    });",
+					"",
+					"    pm.test(\"Checar Altura\", function() {",
+					"        pm.expect(result.altura).to.eql(altura);",
+					"    });",
+					"",
+					"    pm.test(\"Checar IMC - Índice de Massa Corpórea\", function() {",
+					"        pm.expect(result.imc).to.eql(",
+					"            pm.collectionVariables.get(\"imc\")",
+					"        );",
+					"    });",
+					"",
+					"    pm.test(\"Checar Situação Peso\", function() {",
+					"        pm.expect(result.situacao).to.eql(",
+					"            pm.collectionVariables.get(\"situacao\")",
+					"        );",
+					"    });",
+					"",
+					"}",
+					"else {",
+					"",
+					"    pm.test(\"Retorno Inválido\", function() {",
+					"        pm.response.to.be.badRequest;",
+					"    });",
+					"    ",
+					"}"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "peso",
+			"value": "75.12"
+		},
+		{
+			"key": "altura",
+			"value": "1.81"
+		},
+		{
+			"key": "imc",
+			"value": "22.9"
+		},
+		{
+			"key": "situacao",
+			"value": "Normal"
+		}
+	]
+}
