@@ -15,7 +15,7 @@ namespace Calculos.Common
             if (peso <= 0 || altura <= 0)
                 return null;
 
-            return peso / (altura * altura); // Simulação de falha
+            return peso / (altura * altura); // FIXME: Simulação de falha
             //return Math.Round(peso / (altura * altura), 1);
         }
 

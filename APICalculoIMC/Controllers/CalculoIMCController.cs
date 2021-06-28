@@ -27,7 +27,7 @@ namespace APICalculoIMC.Controllers
                $"Peso em Kg: {peso}|" +
                $"Altura em Metros: {altura}");
             
-            // Simulação de falha - Validações comentadas a fim de forçar um erro
+            // FIXME: Simulação de falha - Validações comentadas a fim de forçar um erro
             // de código 500 pela API
             /*if (peso <= 0)
                 return GerarResultParamInvalido("O Peso em Kg");
