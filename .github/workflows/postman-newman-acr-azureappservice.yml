@@ -22,13 +22,6 @@ jobs:
       
     - name: Build de imagem
       run: docker build . --file Dockerfile --tag ${{ secrets.AZURECR_REGISTRY }}/${{ env.NOME_IMAGEM }}:latest
-                
-    - name: Login no Azure Container Registry
-      uses: docker/login-action@v1.10.0
-      with:
-        registry: ${{ secrets.AZURECR_REGISTRY }}
-        username: ${{ secrets.AZURECR_USERNAME }}
-        password: ${{ secrets.AZURECR_PASSWORD }}
 
     - name: Criação de container para testes com a API
       run: |
@@ -39,6 +32,13 @@ jobs:
       run: |
         cd ${{ env.CAMINHO_TESTES }}
         newman run CalculoIMC.postman_collection.json -d data-tests-imc.json
+
+    - name: Login no Azure Container Registry
+      uses: docker/login-action@v1.10.0
+      with:
+        registry: ${{ secrets.AZURECR_REGISTRY }}
+        username: ${{ secrets.AZURECR_USERNAME }}
+        password: ${{ secrets.AZURECR_PASSWORD }}
         
     - name: Geração de tag com número do Build e Push no Azure Container Registry
       run: |
