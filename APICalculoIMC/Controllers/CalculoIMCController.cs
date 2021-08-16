@@ -27,13 +27,11 @@ namespace APICalculoIMC.Controllers
                $"Peso em Kg: {peso}|" +
                $"Altura em Metros: {altura}");
             
-            // FIXME: Simulação de falha - Validações comentadas a fim de forçar um erro
-            // de código 500 pela API
-            /*if (peso <= 0)
+            if (peso <= 0)
                 return GerarResultParamInvalido("O Peso em Kg");
 
             if (altura <= 0)
-                return GerarResultParamInvalido("A Altura em Metros");*/
+                return GerarResultParamInvalido("A Altura em Metros");
 
             var imc = IndiceMassaCorporea.Calcular(peso, altura).Value;
             var resultado = new ClassificacaoPessoa()
