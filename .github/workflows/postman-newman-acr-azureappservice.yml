@@ -40,7 +40,7 @@ jobs:
     - name: Testes da API REST com Newman
       run: |
         cd ${{ env.CAMINHO_TESTES }}
-        newman run {{ env.ARQUIVO_COLLECTION_TESTES }} -d {{ env.ARQUIVO_DADOS_TESTES }}
+        newman run '{{ env.ARQUIVO_COLLECTION_TESTES }}' -d '{{ env.ARQUIVO_DADOS_TESTES }}'
         
     - name: Geração de tag com número do Build e Push no Azure Container Registry
       run: |
