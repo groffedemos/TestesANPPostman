@@ -10,8 +10,6 @@ env:
   NOME_IMAGEM: apicalculoimc
   NOME_WEBAPP: groffecalculoimc
   CAMINHO_TESTES: ./Tests
-  ARQUIVO_COLLECTION_TESTES: CalculoIMC.postman_collection.json
-  ARQUIVO_DADOS_TESTES: data-tests-imc.json
 
 jobs:
 
@@ -40,7 +38,7 @@ jobs:
     - name: Testes da API REST com Newman
       run: |
         cd ${{ env.CAMINHO_TESTES }}
-        newman run '{{ env.ARQUIVO_COLLECTION_TESTES }}' -d '{{ env.ARQUIVO_DADOS_TESTES }}'
+        newman run CalculoIMC.postman_collection.json -d data-tests-imc.json
         
     - name: Geração de tag com número do Build e Push no Azure Container Registry
       run: |
