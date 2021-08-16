@@ -30,7 +30,7 @@ namespace APICalculoIMC
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "APICalculoIMC", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "APICalculoIMC ANP", Version = "v1" });
             });
         }
 
