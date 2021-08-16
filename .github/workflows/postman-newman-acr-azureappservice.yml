@@ -34,3 +34,20 @@ jobs:
       run: |
         docker tag ${{ secrets.AZURECR_REGISTRY }}/${{ env.NOME_IMAGEM }}:latest ${{ secrets.AZURECR_REGISTRY }}/${{ env.NOME_IMAGEM }}:$GITHUB_RUN_NUMBER
         docker push --all-tags ${{ secrets.AZURECR_REGISTRY }}/${{ env.NOME_IMAGEM }}
+  
+  deployment-azwebapp:
+    needs: [build-tests-push]
+    
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Azure Login - Conectando com Credenciais no Azure
+      uses: Azure/login@v1.1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Azure WebApp - Deployment da Aplicacao
+      uses: Azure/webapps-deploy@v2.2.3
+      with:
+        app-name: ${{ env.NOME_WEBAPP }}
+        images: '${{ secrets.AZURECR_REGISTRY }}/${{ env.NOME_IMAGEM }}:${{ github.run_number }}'
