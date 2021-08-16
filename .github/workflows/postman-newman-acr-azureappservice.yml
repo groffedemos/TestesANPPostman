@@ -8,7 +8,7 @@ on:
 
 env:
   NOME_IMAGEM: apicalculoimc
-  CAMINHO_PROJETO_WEBAPP: ./APIFinancas
+  CAMINHO_PROJETO_WEBAPP: ./APICalculoIMC
   NOME_WEBAPP: groffecalculoimc
   CAMINHO_TESTES: ./Tests
 
